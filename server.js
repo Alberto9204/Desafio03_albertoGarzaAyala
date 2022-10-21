@@ -1,5 +1,5 @@
 const express = require('express')
-const Contenedor = require('./contenedor')
+const Contenedor = require('./Contenedor')
 
 const app = express()
 const productos = new Contenedor('productos.txt')
@@ -7,10 +7,9 @@ const productos = new Contenedor('productos.txt')
 const PORT = 8080
 
 const server = app.listen(PORT, () => {
-    console.log(`Servidor http en el puerto ${server.address().port}`)
+    console.log(`Servidor http escuchando en el puerto ${server.address().port}`)
 })
 server.on("error", error => console.log(`Error en servidor ${error}`))
-
 
 app.get('/productos', async (req, res) => {
     const prods = await productos.getAll()

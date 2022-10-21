@@ -1,25 +1,18 @@
-
-const { promises: fs} = require ('fs')
+const {promises: fs} = require ('fs')
 
 class Contenedor {
-    constructor(route){
+    constructor(route) {
         this.route = route
     }
-
     async getAll(){
-        try{
+        try {
             const content = JSON.parse(await fs.readFile(`./${this.route}`,'utf-8'))
-            console.log(content)
-        }catch(err){
-            console.log(err)
+            return content
+        } catch (error) {
+            console.log(error)
+            return []
         }
     }
- 
-
 }
 
 module.exports = Contenedor
-
-const ruta = new Contenedor ('productos.txt')
-ruta.getAll()
-
